@@ -29,7 +29,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/notebooks", notebookRoutes);
 
 // Serve the public folder
-app.use("/", express.static("../frontend/public"));
+app.use("/", express.static("../frontend/dist"));
 
 // Start the server
 app.listen(port, () => {
