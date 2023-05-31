@@ -22,11 +22,11 @@ app.use(express.json());
 
 // Routes
 const authRoutes = require("./routes/authRoutes");
-const notebookRoutes = require("./routes/notebookRoutes");
+const recipeRoutes = require("./routes/recipeRoutes");
 
 // Register routes
 app.use("/api/auth", authRoutes);
-app.use("/api/notebooks", notebookRoutes);
+app.use("/api/recipes", recipeRoutes);
 
 // Serve the public folder
 app.use("/", express.static("../frontend/dist"));
