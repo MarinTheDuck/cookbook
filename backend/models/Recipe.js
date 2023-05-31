@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
-const notebookSchema = new mongoose.Schema({
+const recipeSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   title: String,
+  text: String,
   picture: String,
 });
 
-module.exports = mongoose.model("Notebook", notebookSchema, "notebooks");
+module.exports = mongoose.model("Recipe", recipeSchema, "recipes");

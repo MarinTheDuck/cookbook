@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
-import Notebook from "./pages/Notebook";
+import Recipe from "./pages/Recipe";
 
 export const GlobalContext = createContext();
 
@@ -30,8 +30,8 @@ const App = () => {
         return <Register />;
       case "Home":
         return <Home />;
-      case "Notebook":
-        return <Notebook />;
+      case "Recipe":
+        return <Recipe />;
       default:
         return (
           // Select have user select login or register
