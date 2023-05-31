@@ -1,5 +1,6 @@
 import { useState, createContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
@@ -34,32 +35,28 @@ const App = () => {
         return <Recipe />;
       default:
         return (
-          // Select have user select login or register
-          <div className="row">
-            <div className="col-12">
-              <h1 className="text-center">Cookbook</h1>
-            </div>
-            <div className="col-12">
-              <div className="row">
-                <div className="col-6">
-                  <button
-                    className="btn btn-primary btn-block"
-                    onClick={() => setPage("Login")}
-                  >
-                    Login
-                  </button>
-                </div>
-                <div className="col-6">
-                  <button
-                    className="btn btn-primary btn-block"
-                    onClick={() => setPage("Register")}
-                  >
-                    Register
-                  </button>
-                </div>
+          <section className="py-4 py-xl-5">
+            <div className="container">
+              <div className="text-center p-4 p-lg-5">
+                <p className="fw-bold text-primary mb-2">Cookbook</p>
+                <h1 className="fw-bold mb-4">Welcome!</h1>
+                <button
+                  type="button"
+                  className="btn btn-primary fs-5 me-2 py-2 px-4"
+                  onClick={() => setPage("Login")}
+                >
+                  Login
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary fs-5 me-2 py-2 px-4"
+                  onClick={() => setPage("Register")}
+                >
+                  Register
+                </button>
               </div>
             </div>
-          </div>
+          </section>
         );
     }
   };

@@ -7,6 +7,12 @@ const register = async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   try {
+    // Check if username already exists
+    const duplicateUser = await User.findOne({ username });
+    if (duplicateUser) {
+      return res.status(400).json({ error: "Username already exists" });
+    }
+
     const user = await User.create({ username, password: hashedPassword });
 
     if (!user) {

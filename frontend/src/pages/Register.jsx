@@ -41,9 +41,16 @@ const Register = () => {
 
         // Set the page to "home" in the global context
         setPage("Home");
-
       } else {
-        setError("Registration failed");
+        const data = await response.json();
+        if (
+          response.status === 400 &&
+          data.error === "Username already exists"
+        ) {
+          setError(data.error);
+        } else {
+          setError("Registration failed");
+        }
       }
     } catch (error) {
       console.error("Error during registration:", error);
@@ -52,55 +59,77 @@ const Register = () => {
   };
 
   return (
-    <div className="container">
-      <button
-        className="btn btn-secondary"
-        onClick={() => setPage("Login")}
-      >
-        Go to Login page
-      </button>
-      <br />
-      <h2>Register</h2>
+    <div className="container mt-2">
+      <div className="row mb-5">
+        <div className="col-md-8 col-xl-6 text-center mx-auto">
+          <h2>Register</h2>
+          <p>Register for an account to view your recipes and add new ones.</p>
+        </div>
+      </div>
       {error && <div className="alert alert-danger">{error}</div>}
-      <form>
-        <div className="form-group">
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
+      <div className="row d-flex justify-content-center">
+        <div className="col-md-6 col-xl-4">
+          <div className="card mb-5">
+            <div className="card-body d-flex flex-column align-items-center">
+              <div className="bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4">
+                <i className="bi bi-person"></i>
+              </div>
+              <form className="text-center" method="post">
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    type="text"
+                    name="username"
+                    id="username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                    placeholder="Username"
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    className="form-control"
+                    type="password"
+                    name="confirmPassword"
+                    id="confirmPassword"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    placeholder="Confirm Password"
+                  />
+                </div>
+                <div className="mb-3">
+                  <button
+                    className="btn btn-primary d-block w-100"
+                    type="button"
+                    onClick={handleRegister}
+                  >
+                    Register
+                  </button>
+                </div>
+                <p className="text-muted">Already have an account?</p>
+                <button
+                  className="btn btn-secondary d-block w-100 mb-3"
+                  type="button"
+                  onClick={() => setPage("Login")}
+                >
+                  Log in
+                </button>
+              </form>
+            </div>
+          </div>
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="confirmPassword">Confirm Password:</label>
-          <input
-            type="password"
-            className="form-control"
-            id="confirmPassword"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-        </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleRegister}
-        >
-          Register
-        </button>
-      </form>
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ const recipeSchema = new mongoose.Schema({
   title: String,
   text: String,
   picture: String,
+  dateCreated: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("Recipe", recipeSchema, "recipes");
